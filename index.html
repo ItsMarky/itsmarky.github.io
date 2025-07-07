@@ -183,24 +183,74 @@
             margin: 10px auto 0;
         }
 
-        /* --- Other sections --- */
-        .about-grid, .testimonial-grid {
+        /* --- About Section --- */
+        .about-grid {
             display: grid;
+            grid-template-columns: 1fr 1fr;
             gap: 50px;
+            align-items: center;
         }
-        .about-grid { grid-template-columns: 1fr 1fr; align-items: center; }
-        .testimonial-grid { grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); }
-
         .about-grid img { width: 100%; border-radius: 10px; }
         
-        .testimonial-card {
-            background-color: var(--light-bg);
-            padding: 30px;
+        /* --- Video Section --- */
+        .main-video-player {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 */
+            height: 0;
+            overflow: hidden;
             border-radius: 5px;
-            border-top: 5px solid var(--accent-color);
+            margin-bottom: 30px;
+            border: 2px solid #eee;
         }
-        .testimonial-card p { font-style: italic; margin: 0 0 15px 0; color: var(--light-text); }
-        .testimonial-card .author { font-weight: 600; color: var(--primary-color); }
+        .main-video-player iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+        .video-thumbnail-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 15px;
+        }
+        .video-thumbnail {
+            position: relative;
+            cursor: pointer;
+            border-radius: 5px;
+            overflow: hidden;
+            transition: transform 0.2s ease;
+        }
+        .video-thumbnail:hover {
+            transform: scale(1.05);
+        }
+        .video-thumbnail img {
+            width: 100%;
+            display: block;
+        }
+        .play-icon {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 2rem;
+            color: #fff;
+            background-color: rgba(0,0,0,0.5);
+            width: 50px;
+            height: 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 50%;
+            transition: background-color 0.2s;
+        }
+        .video-thumbnail:hover .play-icon {
+            background-color: var(--primary-color);
+        }
+        .youtube-channel-link {
+            text-align: center;
+            margin-top: 40px;
+        }
         
         /* --- Contact Section --- */
         .contact-form {
@@ -221,70 +271,6 @@
             font-size: 1rem;
         }
         .contact-form button { width: 100%; font-size: 1.1rem; }
-
-        /* --- Floating Action Button --- */
-        .fab-container {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            z-index: 1000;
-            display: flex;
-            flex-direction: column-reverse;
-            align-items: center;
-        }
-        .fab-menu {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-            margin-bottom: 15px;
-            transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s;
-            opacity: 0;
-            visibility: hidden;
-            transform: translateY(10px);
-        }
-        .fab-container.active .fab-menu {
-            opacity: 1;
-            visibility: visible;
-            transform: translateY(0);
-        }
-        .fab-menu a {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            background-color: var(--primary-color);
-            color: #fff;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            text-decoration: none;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
-            transition: transform 0.2s ease;
-        }
-        .fab-menu a:hover {
-            transform: scale(1.1);
-        }
-        .fab-menu svg {
-            width: 24px;
-            height: 24px;
-            fill: #fff;
-        }
-        #fab-toggle {
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            background-color: var(--accent-color);
-            border: none;
-            color: #fff;
-            font-size: 2.5rem;
-            line-height: 60px;
-            cursor: pointer;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-            transition: transform 0.3s ease;
-        }
-        #fab-container.active #fab-toggle {
-            transform: rotate(45deg);
-        }
-
 
         /* --- Footer --- */
         footer {
@@ -345,10 +331,32 @@
 
         <section id="video" class="content-section">
             <h2 class="section-title">See Us In Action</h2>
-            <div class="video-gallery">
-                <div class="video-wrapper">
-                    <iframe src="https://www.youtube.com/embed/jfKfPfyJRdk1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+            <div class="main-video-player">
+                <iframe id="video-player-iframe" src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+
+            <div class="video-thumbnail-grid">
+                <div class="video-thumbnail" data-video-id="dQw4w9WgXcQ">
+                    <img src="https://i.ytimg.com/vi/dQw4w9WgXcQ/hqdefault.jpg" alt="Promo Video">
+                    <div class="play-icon">▶</div>
                 </div>
+                <div class="video-thumbnail" data-video-id="34Ig3X59_qA">
+                    <img src="https://i.ytimg.com/vi/34Ig3X59_qA/hqdefault.jpg" alt="Live Performance">
+                    <div class="play-icon">▶</div>
+                </div>
+                <div class="video-thumbnail" data-video-id="DLzxrzFCyOs">
+                    <img src="https://i.ytimg.com/vi/DLzxrzFCyOs/hqdefault.jpg" alt="Acoustic Set">
+                    <div class="play-icon">▶</div>
+                </div>
+                <div class="video-thumbnail" data-video-id="8UVNT4wvIGY">
+                    <img src="https://i.ytimg.com/vi/8UVNT4wvIGY/hqdefault.jpg" alt="Wedding Gig">
+                    <div class="play-icon">▶</div>
+                </div>
+            </div>
+
+            <div class="youtube-channel-link">
+                <a href="https://www.youtube.com/@Groove101band" class="cta-button primary" target="_blank">Visit Our YouTube Channel</a>
             </div>
         </section>
 
@@ -364,27 +372,7 @@
         </section>
     </main>
 
-    <div id="fab-container">
-        <div class="fab-menu">
-            <a href="tel:555-123-4567" title="Call Us">
-                <svg viewBox="0 0 24 24"><path d="M6.62,10.79C8.06,13.62 10.38,15.94 13.21,17.38L15.41,15.18C15.69,14.9 16.08,14.82 16.43,14.93C17.55,15.3 18.75,15.5 20,15.5A1,1 0 0,1 21,16.5V20A1,1 0 0,1 20,21A17,17 0 0,1 3,4A1,1 0 0,1 4,3H7.5A1,1 0 0,1 8.5,4C8.5,5.25 8.7,6.45 9.07,7.57C9.18,7.92 9.1,8.31 8.82,8.59L6.62,10.79Z"/></svg>
-            </a>
-            <a href="#" title="Facebook" target="_blank">
-                <svg viewBox="0 0 24 24"><path d="M12 2.04C6.5 2.04 2 6.53 2 12.06C2 17.06 5.66 21.21 10.44 21.96V14.96H7.9V12.06H10.44V9.85C10.44 7.32 11.93 5.96 14.22 5.96C15.31 5.96 16.45 6.15 16.45 6.15V8.62H15.19C13.95 8.62 13.56 9.39 13.56 10.18V12.06H16.34L15.89 14.96H13.56V21.96A10 10 0 0 0 22 12.06C22 6.53 17.5 2.04 12 2.04Z"/></svg>
-            </a>
-            <a href="#" title="YouTube" target="_blank">
-                <svg viewBox="0 0 24 24"><path d="M10,15L15.19,12L10,9V15M21.56,7.17C21.69,7.64 21.78,8.27 21.84,9.07C21.91,9.87 21.94,10.56 21.94,11.16L22,12C22,14.19 21.84,15.8 21.56,16.83C21.31,17.73 20.73,18.31 19.83,18.56C19.36,18.69 18.73,18.78 17.93,18.84C17.13,18.91 16.44,18.94 15.84,18.94L15,19C12.81,19 11.2,18.84 10.17,18.56C9.27,18.31 8.69,17.73 8.44,16.83C8.31,16.36 8.22,15.73 8.16,14.93C8.09,14.13 8.06,13.44 8.06,12.84L8,12C8,9.81 8.16,8.2 8.44,7.17C8.69,6.27 9.27,5.69 10.17,5.44C10.64,5.31 11.27,5.22 12.07,5.16C12.87,5.09 13.56,5.06 14.16,5.06L15,5C17.19,5 18.8,5.16 19.83,5.44C20.73,5.69 21.31,6.27 21.56,7.17Z"/></svg>
-            </a>
-        </div>
-        <button id="fab-toggle">+</button>
-    </div>
-
     <footer>
-        <div class="social-links">
-            <a href="#" title="Facebook">FB</a>
-            <a href="#" title="Instagram">IG</a>
-            <a href="#" title="YouTube">YT</a>
-        </div>
         <p>Groove101 Band © 2025</p>
         <p>Phone: (555) 123-4567</p>
     </footer>
@@ -393,13 +381,6 @@
         const navWrapper = document.querySelector('.nav-wrapper');
         const sections = document.querySelectorAll('header, section');
         const navLinks = document.querySelectorAll('.nav-links a');
-        const fabContainer = document.getElementById('fab-container');
-        const fabToggle = document.getElementById('fab-toggle');
-
-        // Floating Action Button Toggle
-        fabToggle.addEventListener('click', () => {
-            fabContainer.classList.toggle('active');
-        });
 
         // Smart Navigation Animation
         window.addEventListener('scroll', () => {
@@ -415,7 +396,7 @@
             let current = 'home';
             sections.forEach(section => {
                 const sectionTop = section.offsetTop;
-                if (pageYOffset >= (sectionTop - 60)) { // 60 is nav height
+                if (pageYOffset >= (sectionTop - 60)) {
                     current = section.getAttribute('id');
                 }
             });
@@ -425,6 +406,17 @@
                 if (a.getAttribute('href').includes(current)) {
                     a.classList.add('active');
                 }
+            });
+        });
+        
+        // Interactive Video Gallery
+        const mainVideoIframe = document.getElementById('video-player-iframe');
+        const thumbnails = document.querySelectorAll('.video-thumbnail');
+
+        thumbnails.forEach(thumb => {
+            thumb.addEventListener('click', () => {
+                const videoId = thumb.getAttribute('data-video-id');
+                mainVideoIframe.src = `https://www.youtube.com/embed/${videoId}`;
             });
         });
     </script>
