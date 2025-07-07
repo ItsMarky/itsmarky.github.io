@@ -7,6 +7,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" href="images/g101logo.png">
     <style>
         :root {
             --primary-color: #9d3a6c; /* Magenta */
@@ -38,7 +39,7 @@
             flex-direction: column;
             text-align: center;
             height: 100vh;
-            background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://images.unsplash.com/photo-1524368535928-5b5e00ddc76b?q=80&w=2070&auto=format&fit=crop');
+            background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('images/hero-background.jpg');
             background-size: cover;
             background-position: center;
             color: #fff;
@@ -108,7 +109,7 @@
             position: sticky;
             top: 0;
             z-index: 1000;
-            background-color: rgba(255, 255, 255, 0.9);
+            background-color: rgba(255, 255, 255, 0.95);
             backdrop-filter: blur(10px);
             border-bottom: 1px solid #e0e0e0;
             opacity: 0;
@@ -183,119 +184,55 @@
             margin: 10px auto 0;
         }
 
-        /* --- About Section --- */
-        .about-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 50px;
-            align-items: center;
-        }
+        /* --- Individual Section Styles --- */
+        .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 50px; align-items: center; }
         .about-grid img { width: 100%; border-radius: 10px; }
+
+        .band-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 30px; }
+        .band-card { background-color: var(--light-bg); border: 1px solid #e0e0e0; border-radius: 10px; text-align: center; padding: 20px; transition: transform 0.2s, box-shadow 0.2s; }
+        .band-card:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
+        .band-card img { width: 150px; height: 150px; border-radius: 50%; object-fit: cover; margin-bottom: 15px; border: 4px solid var(--primary-color); }
+        .band-card h3 { margin: 10px 0 5px 0; font-size: 1.5rem; }
+        .band-card .role { color: var(--accent-color); font-weight: 600; display: block; margin-bottom: 15px; }
+        .band-card p { font-size: 0.9rem; color: var(--light-text); }
         
-        /* --- Video Section --- */
-        .main-video-player {
-            position: relative;
-            padding-bottom: 56.25%; /* 16:9 */
-            height: 0;
-            overflow: hidden;
-            border-radius: 5px;
-            margin-bottom: 30px;
-            border: 2px solid #eee;
-        }
-        .main-video-player iframe {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-        }
-        .video-thumbnail-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-            gap: 15px;
-        }
-        .video-thumbnail {
-            position: relative;
-            cursor: pointer;
-            border-radius: 5px;
-            overflow: hidden;
-            transition: transform 0.2s ease;
-        }
-        .video-thumbnail:hover {
-            transform: scale(1.05);
-        }
-        .video-thumbnail img {
-            width: 100%;
-            display: block;
-        }
-        .play-icon {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            font-size: 2rem;
-            color: #fff;
-            background-color: rgba(0,0,0,0.5);
-            width: 50px;
-            height: 50px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            border-radius: 50%;
-            transition: background-color 0.2s;
-        }
-        .video-thumbnail:hover .play-icon {
-            background-color: var(--primary-color);
-        }
-        .youtube-channel-link {
-            text-align: center;
-            margin-top: 40px;
-        }
+        .video-wrapper { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 5px; }
+        .video-wrapper iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
+
+        .event-list { display: flex; flex-direction: column; gap: 20px; }
+        .event-item { display: flex; align-items: center; gap: 20px; background: var(--light-bg); padding: 20px; border-radius: 5px; border: 1px solid #e0e0e0; transition: box-shadow 0.2s; }
+        .event-item:hover { box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
+        .event-date { background: var(--primary-color); color: #fff; padding: 15px; border-radius: 5px; text-align: center; font-weight: 600; flex-shrink: 0; }
+        .event-date span { display: block; }
+        .date-day { font-size: 2rem; line-height: 1; }
+        .date-month { font-size: 1rem; }
+        .event-details { flex-grow: 1; }
+        .event-details h3 { margin: 0 0 5px 0; font-size: 1.5rem; }
+        .event-details p { margin: 0; color: var(--light-text); }
+        .event-cta { flex-shrink: 0; }
+        .past-events-list { text-align: center; list-style: none; padding: 0; display: flex; flex-wrap: wrap; justify-content: center; gap: 15px; }
+        .past-events-list li { background: var(--light-bg); padding: 8px 15px; border-radius: 5px; border: 1px solid #e0e0e0; }
         
-        /* --- Contact Section --- */
-        .contact-form {
-            display: grid;
-            gap: 20px;
-            max-width: 700px;
-            margin: 0 auto;
-        }
-        .contact-form input,
-        .contact-form textarea {
-            width: 100%;
-            padding: 15px;
-            border-radius: 5px;
-            border: 1px solid #ccc;
-            background-color: var(--light-bg);
-            color: var(--text-color);
-            font-family: var(--font-family);
-            font-size: 1rem;
-        }
+        .faq-item { border-bottom: 1px solid #e0e0e0; }
+        .faq-question { background: none; border: none; width: 100%; text-align: left; padding: 20px 0; font-size: 1.2rem; font-weight: 600; cursor: pointer; display: flex; justify-content: space-between; align-items: center; color: var(--text-color); }
+        .faq-question::after { content: '+'; font-size: 2rem; transition: transform 0.3s ease; }
+        .faq-question.active::after { transform: rotate(45deg); }
+        .faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.4s ease-out; }
+        .faq-answer p { margin-top: 0; padding: 0 0 20px 0; color: var(--light-text); }
+
+        .contact-form { display: grid; gap: 20px; max-width: 700px; margin: 0 auto; }
+        .contact-form input, .contact-form textarea { width: 100%; padding: 15px; border-radius: 5px; border: 1px solid #ccc; background-color: var(--light-bg); color: var(--text-color); font-family: var(--font-family); font-size: 1rem; }
         .contact-form button { width: 100%; font-size: 1.1rem; }
 
         /* --- Footer --- */
-        footer {
-            background-color: #121212;
-            color: #a0a0a0;
-            text-align: center;
-            padding: 40px 20px;
-        }
-        .social-links { margin-bottom: 20px; }
-        .social-links a { color: #fff; text-decoration: none; font-size: 1.5rem; margin: 0 10px; transition: color 0.2s; }
-        .social-links a:hover { color: var(--accent-color); }
-
-        /* --- Responsive Design --- */
-        @media (max-width: 768px) {
-            .hero-logo { width: 400px; }
-            .hero p { font-size: 1.2rem; }
-            .hero-cta-container { flex-direction: column; }
-            .about-grid { grid-template-columns: 1fr; }
-            .nav-wrapper { overflow-x: auto; }
-        }
-
+        footer { background-color: #121212; color: #a0a0a0; text-align: center; padding: 40px 20px; }
+        footer a { color: #fff; text-decoration: none; transition: color 0.2s; }
+        footer a:hover { color: var(--accent-color); }
+        
+        @media (max-width: 768px) { .hero-logo { width: 400px; } .hero p { font-size: 1.2rem; } .hero-cta-container { flex-direction: column; } .about-grid, .band-grid { grid-template-columns: 1fr; } .nav-wrapper { overflow-x: auto; } .event-item { flex-direction: column; align-items: flex-start; } }
     </style>
 </head>
 <body>
-
     <header id="home" class="hero">
         <img src="images/g101logo.png" alt="Groove 101 Band Logo" class="hero-logo">
         <p>Live Music for Unforgettable Events</p>
@@ -310,7 +247,10 @@
             <ul class="nav-links">
                 <li><a href="#home" class="active">Home</a></li>
                 <li><a href="#about">About</a></li>
+                <li><a href="#band">The Band</a></li>
+                <li><a href="#events">Events</a></li>
                 <li><a href="#video">Video</a></li>
+                <li><a href="#faq">FAQ</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
         </nav>
@@ -321,86 +261,205 @@
             <h2 class="section-title">The Ultimate Party Band</h2>
             <div class="about-grid">
                 <div>
-                    <p>Groove101 is a high-energy, multi-genre party band specializing in weddings, corporate events, and private functions. With years of experience and a passion for performance, we bring a level of excitement that will make your event unforgettable.</p>
+                    <p>Groove101 is a versatile party band that energises weddings, corporate events, and private functions. With years of experience and a focus on great live performance, we deliver music that keeps your guests engaged and the atmosphere alive.</p>
                 </div>
                 <div>
-                    <img src="https://images.unsplash.com/photo-1563847029381-190615598153?q=80&w=1964&auto=format&fit=crop" alt="The band posing together">
+                    <img src="images/show.jpg" alt="The band posing together">
                 </div>
             </div>
+        </section>
+
+        <section id="band" class="content-section">
+            <h2 class="section-title">Meet the Band</h2>
+            <div class="band-grid">
+                 <div class="band-card">
+                    <img src="images/kyia.jpg" alt="Photo of Kyia">
+                    <h3>Kyia</h3><span class="role">Vocalist</span>
+                    <p>Soulful, gospel-influenced vocalist with roots in church singing. Known for authentic delivery and always gets compliments from guests.</p>
+                </div>
+                <div class="band-card">
+                    <img src="images/lauren.jpeg" alt="Photo of Lauren">
+                    <h3>Lauren</h3><span class="role">Vocalist</span>
+                    <p>Dynamic lead/harmony vocalist and make-up artist. Brings theatre and live music experience, with strong jazz, soul, reggae and pop vocals, plus stage energy.</p>
+                </div>
+                 <div class="band-card">
+                    <img src="images/russell.jpeg" alt="Photo of Russell">
+                    <h3>Russell</h3><span class="role">Sax & Keys</span>
+                    <p>Key figure in Groove101’s sound. Plays sax and keys with tight unison lines, rich voicings and smooth solos. Well-known on the West Kent scene.</p>
+                </div>
+                                 <div class="band-card">
+                    <img src="images/paul.jpg" alt="Photo of Paul">
+                    <h3>Paul</h3><span class="role">Trumpet</span>
+                    <p>One of the South East’s standout brass players. From Royal Albert Hall gigs to festivals, his muted solos shine in slow jams, while ska and soul sets show off his humour and stage presence.</p>
+                </div>
+                                 <div class="band-card">
+                    <img src="images/mark.jpeg" alt="Photo of Mark">
+                    <h3>Mark</h3><span class="role">Trombone & Violin</span>
+                    <p>New to the South East, already making waves. Funky trombone solos, tight horn lines, and occasional pranks. Also a skilled violinist and keyboard player.</p>
+                </div>
+                                 <div class="band-card">
+                    <img src="images/jon.jpg" alt="Photo of Jon">
+                    <h3>Jon</h3><span class="role">Bass</span>
+                    <p>Anchors the rhythm section with Richard. Funk enthusiast with slick finger bass and sharp slap lines, blending classic and modern styles.</p>
+                </div>
+                                 <div class="band-card">
+                    <img src="images/steve.jpeg" alt="Photo of Steve">
+                    <h3>Steve</h3><span class="role">Guitar & Percussion</span>
+                    <p>Veteran of the scene. Brings tasteful Latin/jazz guitar and adds conga, tambourine, and shaker to lift the live sound. Known for his dry wit.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="events" class="content-section">
+            <h2 class="section-title">Upcoming Events</h2>
+            <div class="event-list">
+                <div class="event-item">
+                    <div class="event-date"><span class="date-day">19</span><span class="date-month">JUL</span></div>
+                    <div class="event-details"><h3>The O2</h3><p>London, UK - Public Event</p></div>
+                    <div class="event-cta"><a href="#" class="cta-button primary">Get Tickets</a></div>
+                </div>
+                <div class="event-item">
+                    <div class="event-date"><span class="date-day">26</span><span class="date-month">JUL</span></div>
+                    <div class="event-details"><h3>Private Wedding</h3><p>Brighton - Booked</p></div>
+                </div>
+            </div>
+            <h2 class="section-title" style="margin-top: 80px; font-size: 1.8rem;">Past Highlights</h2>
+            <ul class="past-events-list">
+                <li>Tunbridge Wells Fringe Festival</li><li>Charlton Park, London</li>
+            </ul>
         </section>
 
         <section id="video" class="content-section">
             <h2 class="section-title">See Us In Action</h2>
-
-            <div class="main-video-player">
-                <iframe id="video-player-iframe" src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-            </div>
-
-            <div class="video-thumbnail-grid">
-                <div class="video-thumbnail" data-video-id="dQw4w9WgXcQ">
-                    <img src="https://i.ytimg.com/vi/dQw4w9WgXcQ/hqdefault.jpg" alt="Promo Video">
-                    <div class="play-icon">▶</div>
-                </div>
-                <div class="video-thumbnail" data-video-id="34Ig3X59_qA">
-                    <img src="https://i.ytimg.com/vi/34Ig3X59_qA/hqdefault.jpg" alt="Live Performance">
-                    <div class="play-icon">▶</div>
-                </div>
-                <div class="video-thumbnail" data-video-id="DLzxrzFCyOs">
-                    <img src="https://i.ytimg.com/vi/DLzxrzFCyOs/hqdefault.jpg" alt="Acoustic Set">
-                    <div class="play-icon">▶</div>
-                </div>
-                <div class="video-thumbnail" data-video-id="8UVNT4wvIGY">
-                    <img src="https://i.ytimg.com/vi/8UVNT4wvIGY/hqdefault.jpg" alt="Wedding Gig">
-                    <div class="play-icon">▶</div>
-                </div>
-            </div>
-
-            <div class="youtube-channel-link">
-                <a href="https://www.youtube.com/@Groove101band" class="cta-button primary" target="_blank">Visit Our YouTube Channel</a>
+            <div class="video-wrapper">
+                <iframe src="https://www.youtube.com/embed/6bzKOg7KRoM?si=z-zxyYSOXComs71u" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
             </div>
         </section>
+
+    <section class="content-section">
+        <div class="faq-accordion">
+            <div class="faq-item">
+                <button class="faq-question">How do I hire you?</button>
+                <div class="faq-answer">
+                    <p>Please contact us using the web form</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-question">Can I see you play before making a decision?</button>
+                <div class="faq-answer">
+                    <p>Of course! Go to our Youtube page and social media on Facebook to see many of our live performances, or view our events page for public shows.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-question">What style of music do you play?</button>
+                <div class="faq-answer">
+                    <p>Groove 101 enjoy playing a wide repertoire of funk, soul and pop hits from classic tunes from the 60’s, 70’s and 80’s through to neo soul grooves and modern club anthems. These tracks have been carefully selected to keep the dance floor filled and your guests smiling. Popular choices include Mercy by Duffy, Superstition by Stevie Wonder and Valerie by Amy Winehouse.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-question">How long does it take you to set up your equipment?</button>
+                <div class="faq-answer">
+                    <p>It normally takes us around an hour and a half to set up all our equipment and to sound-check. It’s worth making the venue aware of this in advance, to avoid any confusion on the day itself.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-question">How long will you play?</button>
+                <div class="faq-answer">
+                    <p>We typically play two sets, each lasting around one hour, but this can be tailored to suit your needs, so if you’d prefer three shorter sets – or one long one – we’re happy to oblige. Some clients also choose our popular instrumental upgrade, where we play live subtle background music to enhance a dinner, or when guests are arriving.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-question">Will you learn our special song?</button>
+                <div class="faq-answer">
+                    <p>Please let us know at the time of booking if you would like us to play a particular song, so we have time to arrange and rehearse your choice. We will be happy to learn the track you have chosen, however in certain rare cases highly produced songs (e.g. with orchestral backing, choirs, or sound effects), may be hard to replicate live. In such circumstances, in consultation with you, we may recommend playing a pre-recorded digital version of the song through our sound system.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-question">Can guests sing along with the band?</button>
+                <div class="faq-answer">
+                    <p>We are very happy for the audience to participate, however if you would like guests to sing a tune using the band’s microphones we would ask you to let us know prior to the event, as experience has unfortunately taught us the pitfalls that can potentially result from having&nbsp; impromptu singers on stage.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-question">Can we use your sound system for speeches?</button>
+                <div class="faq-answer">
+                    <p>You are welcome to use our microphones and PA system for your speeches once we have set up our equipment. However please be aware that we do not routinely use radio mics in our live set up; if you need them, please let us know in advance.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-question">Are you able to DJ between sets?</button>
+                <div class="faq-answer">
+                    <p>Included at no extra cost is a DJ service for when we’re not performing ‘on stage’, keeping your guests entertained throughout. We can play songs from our wide selection of tracks or plug your iPod or tablet into our sound system to feature your own playlist. The choice is yours.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-question">How far do you travel?</button>
+                <div class="faq-answer">
+                    <p>Most of our bookings are in Kent (where we’re based) but we often travel further afield. Just drop us a line and we’ll quickly let you know if your event location would be feasible for us.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-question">How will you be dressed?</button>
+                <div class="faq-answer">
+                    <p>We will be guided by you. Unless otherwise requested the band normally dresses smartly and subtly in a professional manner. We can also provide a decade themed package e.g. 60’s, 70’s and wear clothes in keeping with that era.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-question">What facilities do you require?</button>
+                <div class="faq-answer">
+                    <p>We ideally need a stage area of 5 x 3 metres and a minimum of two electrical sockets. We would also require access to the playing area at least 1½ hours prior to the event – to set up our gear and sound check. Lastly we would be grateful for a room to get changed in&nbsp;(your venue should be happy to provide this free of charge)&nbsp;and some food (we normally eat from the buffet but a round of sandwiches would be perfectly fine too).</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-question">How much do you charge?</button>
+                <div class="faq-answer">
+                    <p>This all depends on the location and nature of your event so it wouldn’t be fair for us to quote a blanket figure without knowing a little more. Please feel free to contact us to discuss your precise requirements so we can provide you with a no-obligation quotation. The good news is that by booking direct you won’t have to pay expensive agency fees, which sometimes can be as high as 25% of the total&nbsp;amount.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-question">Got a question that's not answered here?</button>
+                <div class="faq-answer">
+                    <p>If you have questions we haven’t answered here then please get in touch. It doesn’t matter how trivial they may seem – if they’re important to you, they’re important to us. After all, it’s your event so it’s only natural you want to prepare thoroughly so that everything runs smoothly on the day.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+
 
         <section id="contact" class="content-section">
             <h2 class="section-title">Book Your Event</h2>
-            <form class="contact-form" action="#" method="POST">
+            <form class="contact-form" action="https://formspree.io/f/YOUR_UNIQUE_ID" method="POST">
                 <input type="text" name="name" placeholder="Your Name" required>
                 <input type="email" name="email" placeholder="Your Email" required>
-                <input type="text" name="event_date" placeholder="Event Date (e.g., DD/MM/YYYY)">
+                <input type="email" name="email" placeholder="Your Phone Number" required>
                 <textarea name="message" rows="5" placeholder="Tell us about your event..." required></textarea>
-                <button type="submit" class="cta-button primary">Send Inquiry</button>
+                <button type="submit" class="cta-button primary">Submit</button>
             </form>
         </section>
     </main>
-
+    
     <footer>
         <p>Groove101 Band © 2025</p>
-        <p>Phone: (555) 123-4567</p>
     </footer>
 
     <script>
         const navWrapper = document.querySelector('.nav-wrapper');
         const sections = document.querySelectorAll('header, section');
         const navLinks = document.querySelectorAll('.nav-links a');
-
-        // Smart Navigation Animation
         window.addEventListener('scroll', () => {
             if (window.scrollY > 50) {
                 navWrapper.classList.add('scrolled');
             } else {
                 navWrapper.classList.remove('scrolled');
             }
-        });
-
-        // Active Navigation Link on Scroll
-        window.addEventListener('scroll', () => {
             let current = 'home';
             sections.forEach(section => {
                 const sectionTop = section.offsetTop;
-                if (pageYOffset >= (sectionTop - 60)) {
+                if (pageYOffset >= (sectionTop - 70)) {
                     current = section.getAttribute('id');
                 }
             });
-
             navLinks.forEach(a => {
                 a.classList.remove('active');
                 if (a.getAttribute('href').includes(current)) {
@@ -408,18 +467,19 @@
                 }
             });
         });
-        
-        // Interactive Video Gallery
-        const mainVideoIframe = document.getElementById('video-player-iframe');
-        const thumbnails = document.querySelectorAll('.video-thumbnail');
 
-        thumbnails.forEach(thumb => {
-            thumb.addEventListener('click', () => {
-                const videoId = thumb.getAttribute('data-video-id');
-                mainVideoIframe.src = `https://www.youtube.com/embed/${videoId}`;
+        const faqQuestions = document.querySelectorAll('.faq-question');
+        faqQuestions.forEach(button => {
+            button.addEventListener('click', () => {
+                const answer = button.nextElementSibling;
+                button.classList.toggle('active');
+                if (button.classList.contains('active')) {
+                    answer.style.maxHeight = answer.scrollHeight + 'px';
+                } else {
+                    answer.style.maxHeight = 0;
+                }
             });
         });
     </script>
-
 </body>
 </html>
